@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\User;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\Get;
 use App\State\UserProfileProvider;
-use Doctrine\ORM\Mapping\GeneratedValue;
 
+#[Get(
+    uriTemplate: '/users/{id}',
+    output: ProfileUser::class,
+    provider: UserProfileProvider::class
+)]
 class ProfileUser
 {
     #[ApiProperty(identifier: true)]

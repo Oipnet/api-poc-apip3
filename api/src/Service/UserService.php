@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\User;
 use App\Exception\UserNotFoundException;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class UserService
@@ -25,8 +26,8 @@ class UserService
         return $user;
     }
 
-    public function getAllUsers(): array
+    public function getAllUsers(): Collection
     {
-        return $this->userRepository->findAll();
+        return new ArrayCollection($this->userRepository->findAll());
     }
 }

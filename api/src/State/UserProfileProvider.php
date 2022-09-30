@@ -5,11 +5,10 @@ namespace App\State;
 use ApiPlatform\Metadata\CollectionOperationInterface;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\Dto\ProfileUser;
+use App\Dto\User\ProfileUser;
 use App\Entity\User;
 use App\Exception\UserNotFoundException;
 use App\Service\UserService;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserProfileProvider implements ProviderInterface
@@ -23,7 +22,7 @@ class UserProfileProvider implements ProviderInterface
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|iterable|null
     {
         if ($operation instanceof CollectionOperationInterface) {
-            $users = new ArrayCollection($this->userService->getAllUsers());
+            $users = $this->userService->getAllUsers();
 
             return $users->map(function (User $entityUser) {
               return new ProfileUser(

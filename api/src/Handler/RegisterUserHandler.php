@@ -2,8 +2,7 @@
 
 namespace App\Handler;
 
-use App\Dto\RegisterUser;
-use App\Entity\Role;
+use App\Dto\User\RegisterUser;
 use App\Entity\User;
 use App\Enum\Roles;
 use App\Service\RoleService;
