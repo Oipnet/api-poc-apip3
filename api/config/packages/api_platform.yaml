@@ -7,6 +7,13 @@ api_platform:
         
     # Mercure integration, remove if unwanted
     mercure: ~
+    
+    swagger:
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
+                
     # Good cache defaults for REST APIs
     defaults:
         stateless: true

@@ -9,10 +9,12 @@ use App\State\RoleProvider;
 
 #[Get(
     uriTemplate: '/roles/{id}',
+    security: "is_granted('ROLE_ADMIN')",
     provider: RoleProvider::class
 )]
 #[GetCollection(
     uriTemplate: '/roles',
+    security: "is_granted('ROLE_ADMIN')",
     provider: RoleProvider::class
 )]
 class GetRole

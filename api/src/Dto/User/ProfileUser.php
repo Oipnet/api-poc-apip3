@@ -4,10 +4,18 @@ namespace App\Dto\User;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\State\UserProfileProvider;
 
 #[Get(
     uriTemplate: '/users/{id}',
+    security: "is_granted('ROLE_ADMIN') or object.id == user.getId()",
+    output: ProfileUser::class,
+    provider: UserProfileProvider::class
+)]
+#[GetCollection(
+    uriTemplate: '/users',
+    security: "is_granted('ROLE_ADMIN')",
     output: ProfileUser::class,
     provider: UserProfileProvider::class
 )]
