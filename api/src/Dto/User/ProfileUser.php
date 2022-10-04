@@ -23,7 +23,7 @@ use App\State\UserProfileProvider;
 )]
 #[Delete(
     uriTemplate: '/users/{id}',
-    security: "is_granted('ROLE_ADMIN')",
+    security: "is_granted('ROLE_ADMIN')  or object.id == user.getId()",
     input: ProfileUser::class,
     output: false,
     provider: UserProfileProvider::class,
