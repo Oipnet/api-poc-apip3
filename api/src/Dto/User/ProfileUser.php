@@ -3,8 +3,10 @@
 namespace App\Dto\User;
 
 use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Symfony\Messenger\Processor as MessengerProcessor;
 use App\State\UserProfileProvider;
 
 #[Get(
@@ -17,6 +19,13 @@ use App\State\UserProfileProvider;
     uriTemplate: '/users',
     security: "is_granted('ROLE_ADMIN')",
     output: ProfileUser::class,
+    provider: UserProfileProvider::class
+)]
+#[Delete(
+    uriTemplate: '/users/{id}',
+    input: ProfileUser::class,
+    output: false,
+    processor: MessengerProcessor::class,
     provider: UserProfileProvider::class
 )]
 class ProfileUser

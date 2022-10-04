@@ -12,6 +12,7 @@ framework:
         routing:
             # Route your messages to the transports
             'App\Dto\User\RegisterUser': async
+            'App\Dto\User\ProfileUser': async
 
 # when@test:
 #    framework:
