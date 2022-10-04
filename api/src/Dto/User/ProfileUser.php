@@ -23,10 +23,11 @@ use App\State\UserProfileProvider;
 )]
 #[Delete(
     uriTemplate: '/users/{id}',
+    security: "is_granted('ROLE_ADMIN')",
     input: ProfileUser::class,
     output: false,
-    processor: MessengerProcessor::class,
-    provider: UserProfileProvider::class
+    provider: UserProfileProvider::class,
+    processor: MessengerProcessor::class
 )]
 class ProfileUser
 {
